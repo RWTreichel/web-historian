@@ -3,7 +3,7 @@ var archive = require('../helpers/archive-helpers');
 var httpHelpers = require('./http-helpers');
 var fs = require('fs');
 var httpRequest = require('request');
-// require more modules/folders here!
+
 
 var processFile = function(response, content) {
   response.writeHead(200, httpHelpers.headers);
@@ -27,7 +27,12 @@ exports.handleRequest = function (request, response) {
     });
   }
 
+  if (request.method === 'GET') {
+    
+  }
+  
   if (request.method === 'POST'){
+
     request.on('data', function(chunk) {
       file += chunk;
     });
@@ -35,6 +40,10 @@ exports.handleRequest = function (request, response) {
     request.on('end', function() {
       var website = (file.toString().split('=').pop());
       var content = '';
+
+      fs.writeFile(archive.paths.list, website + '\n', function(err) {
+        if (err) throw err;
+      });
 
       httpRequest('http://' + website, function(error, response, body){
         if (!error && response.statusCode === 200) {
@@ -45,6 +54,7 @@ exports.handleRequest = function (request, response) {
           });
         }
       });
+
     });
   }
 };
