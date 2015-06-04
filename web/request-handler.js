@@ -27,9 +27,9 @@ exports.handleRequest = function (request, response) {
     });
   }
 
-  if (request.method === 'GET') {
+  // if (request.method === 'GET') {
     
-  }
+  // }
   
   if (request.method === 'POST'){
 
@@ -41,7 +41,7 @@ exports.handleRequest = function (request, response) {
       var website = (file.toString().split('=').pop());
       var content = '';
 
-      fs.writeFile(archive.paths.list, website + '\n', function(err) {
+      fs.appendFile(archive.paths.list, website + '\n', function(err) {
         if (err) throw err;
       });
 

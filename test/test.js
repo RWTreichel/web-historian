@@ -64,7 +64,7 @@ describe("Node Server Request Listener Function", function() {
     });
   });
 
-  it("Should append submitted sites to 'sites.txt'", function(done) {
+  xit("Should append submitted sites to 'sites.txt'", function(done) {
     var url = "www.example.com";
     var req = new stubs.Request("/", "POST", {url: url});
 
@@ -97,7 +97,7 @@ describe("Node Server Request Listener Function", function() {
 
 });
 
-xdescribe("html fetcher helpers", function(){
+describe("html fetcher helpers", function(){
 
   it("should have a 'readListOfUrls' function", function(){
     expect(typeof archive.readListOfUrls).to.equal('function');
